@@ -79,6 +79,3 @@ def hhLogin(serverNameStr):
 
     # Return server status
     return ServerStatus
-
-thing = hhLogin('olympus')
-print(thing)
