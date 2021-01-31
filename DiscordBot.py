@@ -1,6 +1,9 @@
 import discord
 import os
 from SelenuimLogin import hhLogin
+from dotenv import load_dotenv
+# Load .env variables
+load_dotenv()
 
 client = discord.Client()
 

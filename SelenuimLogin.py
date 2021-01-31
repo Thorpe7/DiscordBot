@@ -6,13 +6,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from dotenv import load_dotenv
+# Load .env variables
+load_dotenv()
 
 
 
 def hhLogin(serverNameStr):
     """Takes the server name from ArkBot and finds its current status through webscrapping host havoc"""
-    # Load .env variables
-    load_dotenv()
 
     # Create temp server key
     temp_key = 0
@@ -74,7 +74,7 @@ def hhLogin(serverNameStr):
     ServerStatus = detailElements[12]
 
     # Wait after entering server page then
-    time.sleep(10)
+    time.sleep(3)
     browser.quit()
 
     # Return server status
