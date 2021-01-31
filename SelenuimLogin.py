@@ -22,15 +22,11 @@ def hhLogin(serverNameStr):
         temp_key = 2
     elif serverNameStr == "fear":
         temp_key = 3
-
-    print(temp_key)
     
     # Pull server IDs
     server1 = os.environ.get("VSV1")
     server2 = os.environ.get("OSV2")
     server3 = os.environ.get("FSV3")
-
-    print(server2)
 
     # Login information
     username_hh = os.environ.get("HHLOGIN")
