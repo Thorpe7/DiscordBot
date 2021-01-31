@@ -5,10 +5,15 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from dotenv import load_dotenv
+
 
 
 def hhLogin(serverNameStr):
     """Takes the server name from ArkBot and finds its current status through webscrapping host havoc"""
+    # Load .env variables
+    load_dotenv()
+
     # Create temp server key
     temp_key = 0
     if serverNameStr == "valguero": 
@@ -18,14 +23,14 @@ def hhLogin(serverNameStr):
     elif serverNameStr == "fear":
         temp_key = 3
 
-    # Pull server IDs from text document
-    serverIDs = open('serverIDs.txt', 'rt')
-    id_List =[]
-    for i in serverIDs:
-        i = i.rstrip()
-        # print(i)
-        id_List.append(i)
- 
+    print(temp_key)
+    
+    # Pull server IDs
+    server1 = os.environ.get("VSV1")
+    server2 = os.environ.get("OSV2")
+    server3 = os.environ.get("FSV3")
+
+    print(server2)
 
     # Login information
     username_hh = os.environ.get("HHLOGIN")
@@ -50,16 +55,15 @@ def hhLogin(serverNameStr):
 
     # Click on server after explicit wait time
     if temp_key == 1:
-        serverLink = WebDriverWait(browser, 15).until(EC.presence_of_element_located((By.ID,id_List[0]
-        )))
+        serverLink = WebDriverWait(browser, 15).until(EC.presence_of_element_located((By.ID,
+        server1)))
         serverLink.click()
     elif temp_key == 2:
-        serverLink = WebDriverWait(browser, 15).until(EC.presence_of_element_located((By.ID,
-        id_List[1])))
+        serverLink = WebDriverWait(browser, 15).until(EC.presence_of_element_located((By.ID,server2)))
         serverLink.click()
     elif temp_key == 3:
         serverLink = WebDriverWait(browser, 15).until(EC.presence_of_element_located((By.ID,
-        id_List[2])))
+        server3)))
         serverLink.click()
 
     # Get Server Status
@@ -72,14 +76,13 @@ def hhLogin(serverNameStr):
     detailElements = detailStr.split('\n')
     # print(detailElements)
     ServerStatus = detailElements[12]
-    return ServerStatus
-
 
     # Wait after entering server page then
     time.sleep(10)
     browser.quit()
 
-
+    # Return server status
+    return ServerStatus
 
 thing = hhLogin('olympus')
 print(thing)
