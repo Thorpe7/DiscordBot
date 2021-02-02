@@ -11,13 +11,15 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-gChromeOptions = webdriver.ChromeOptions()
-gChromeOptions.add_argument("disable-dev-shm-usage")
-browser = webdriver.Chrome(chrome_options=gChromeOptions,
-executable_path=ChromeDriverManager().install())
+
 
 def hhLogin(serverNameStr):
     """Takes the server name from ArkBot and finds its current status through webscrapping host havoc"""
+    # Chrome options for running in heroku
+    gChromeOptions = webdriver.ChromeOptions()
+    gChromeOptions.add_argument("disable-dev-shm-usage")
+    browser = webdriver.Chrome(chrome_options=gChromeOptions,
+    executable_path=ChromeDriverManager().install())
 
     # Create temp server key
     temp_key = 0
@@ -79,8 +81,8 @@ def hhLogin(serverNameStr):
     ServerStatus = detailElements[12]
 
     # Wait after entering server page then
-    time.sleep(3)
-    browser.close()
+    time.sleep(10)
+    browser.Dispose() # If dispose doesn't work, try going back to quit() method
 
     # Return server status
     return ServerStatus

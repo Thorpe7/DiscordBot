@@ -28,8 +28,8 @@ async def on_message(message):
         ServerStatus = hhLogin('fear')
         await message.channel.send("Fear Server: " + str(ServerStatus))
 
-    if message.content.startswith('$hi'):
-        await message.channel.send('suh')
+    if message.content.startswith('$status') or message.content.startswith("#Status"):
+        await message.channel.send('ArkBot is running.')
 
 # Define token & U
 ArkBot_Token = os.environ.get('ARKBOT_TOKEN')
