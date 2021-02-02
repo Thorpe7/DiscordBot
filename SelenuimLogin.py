@@ -82,7 +82,7 @@ def hhLogin(serverNameStr):
 
     # Wait after entering server page then
     time.sleep(10)
-    browser.Dispose() # If dispose doesn't work, try going back to quit() method
+    browser.quit() # If dispose doesn't work, try going back to quit() method
 
     # Return server status
     return ServerStatus
