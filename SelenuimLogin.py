@@ -5,11 +5,16 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from webdriver_manager.chrome import ChromeDriverManager
 from dotenv import load_dotenv
 # Load .env variables
 load_dotenv()
 
 
+gChromeOptions = webdriver.ChromeOptions()
+gChromeOptions.add_argument("disable-dev-shm-usage")
+browser = webdriver.Chrome(chrome_options=gChromeOptions,
+executable_path=ChromeDriverManager().install())
 
 def hhLogin(serverNameStr):
     """Takes the server name from ArkBot and finds its current status through webscrapping host havoc"""
@@ -33,7 +38,7 @@ def hhLogin(serverNameStr):
     psswd_hh = os.environ.get("HHPWD")
 
     # Bot to navigate to host havoc url
-    browser = webdriver.Chrome()
+    # browser = webdriver.Chrome() # Taken out with introduction of chrome options
     browser.get(('https://gamepanel.hosthavoc.com/Login?ReturnUrl=%2f'))
 
     # Fill in login information
@@ -75,7 +80,7 @@ def hhLogin(serverNameStr):
 
     # Wait after entering server page then
     time.sleep(3)
-    browser.quit()
+    browser.close()
 
     # Return server status
     return ServerStatus
