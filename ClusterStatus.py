@@ -15,7 +15,7 @@ def hhLogin_cluster(clusterStr):
     # Chrome options for running in heroku
     gChromeOptions = webdriver.ChromeOptions()
     gChromeOptions.add_argument("disable-dev-shm-usage")
-    browser = webdriver.Chrome(chrome_options=gChromeOptions,
+    browser = webdriver.Chrome(options=gChromeOptions,
     executable_path=ChromeDriverManager().install())
 
     # Create temp server key
@@ -59,8 +59,6 @@ def hhLogin_cluster(clusterStr):
         server2Status = browser.find_element_by_id(server2).text
         server3Status = browser.find_element_by_id(server3).text
         statusList = [server1Status, server2Status, server3Status]
-        
-        print(statusList) # To be removed
 
         # Check elements of list
         for i in statusList:
@@ -75,9 +73,8 @@ def hhLogin_cluster(clusterStr):
     for i in range(0,3,1):
         output_string += serverNames[i] + ": " + endList[i] + ".\n"
 
-    # Wait after entering server page then
-    time.sleep(10)
-    browser.quit() # If dispose doesn't work, try going back to quit() method
+    # Quit Browser
+    browser.quit()
 
     # Return server status
     return output_string

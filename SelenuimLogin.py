@@ -18,7 +18,7 @@ def hhLogin(serverNameStr):
     # Chrome options for running in heroku
     gChromeOptions = webdriver.ChromeOptions()
     gChromeOptions.add_argument("disable-dev-shm-usage")
-    browser = webdriver.Chrome(chrome_options=gChromeOptions,
+    browser = webdriver.Chrome(options=gChromeOptions,
     executable_path=ChromeDriverManager().install())
 
     # Create temp server key
@@ -80,9 +80,8 @@ def hhLogin(serverNameStr):
     # print(detailElements)
     ServerStatus = detailElements[12]
 
-    # Wait after entering server page then
-    time.sleep(10)
-    browser.quit() # If dispose doesn't work, try going back to quit() method
+    # Quit Browser
+    browser.quit() 
 
     # Return server status
     return ServerStatus

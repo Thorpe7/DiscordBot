@@ -1,7 +1,9 @@
+from UpdateCheck import hhLogin_update
 import discord
 import os
 from SelenuimLogin import hhLogin
 from ClusterStatus import hhLogin_cluster
+from UpdateCheck import hhLogin_update
 from dotenv import load_dotenv
 # Load .env variables
 load_dotenv()
@@ -35,6 +37,10 @@ async def on_message(message):
     if message.content.startswith('$cluster') or message.content.startswith("$Cluster"):
         clusterStatus = hhLogin_cluster('cluster')
         await message.channel.send(clusterStatus)
+
+    if message.content.startswith('$update') or message.content.startswith("$Update"):
+        updateStatus = hhLogin_update('update')
+        await message.channel.send(updateStatus) 
 
     if message.content.startswith('$help') or message.content.startswith('$Help'):
         message1 = "Hello I am ArkBot.\nFor the status of all servers enter: '$cluster'.\n"
