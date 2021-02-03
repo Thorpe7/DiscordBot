@@ -36,6 +36,16 @@ async def on_message(message):
         clusterStatus = hhLogin_cluster('cluster')
         await message.channel.send(clusterStatus)
 
+    if message.content.startswith('$help') or message.content.startswith('$Help'):
+        message1 = "Hello I am ArkBot.\nFor the status of all servers enter: '$cluster'.\n"
+        message2 = "For individual server status enter: '$valguero', $olympus', or '$fear'.\n"
+        message3 = "To see if I am running, please enter: '$status'.\n"
+        message4 = "Please note it may take me up to 30 seconds for server information to be retrieved.\n"
+        message5 = "Input of excessive commands will slow down my search.\n"
+        message6 = "My future updates include identifying pending updates and auto-updating.\n"
+        message7 = "If you have any questions or obnoxious feedback, message McDoodle."
+        await message.channel.send(message1+message2+message3+message4+message5+message6+message7)
+
 # Define token & U
 ArkBot_Token = os.environ.get('ARKBOT_TOKEN')
 client.run(ArkBot_Token)
